@@ -141,7 +141,7 @@ def get_rot(image):
     model_dir = snapshot_download('Cherrytest/rot_bgr',
                                   revision='v1.0.0')
     model_path = os.path.join(model_dir, 'rot_bgr.onnx')
-    ort_session = onnxruntime.InferenceSession(model_path)
+    ort_session = onnxruntime.InferenceSession(model_path, providers=['AzureExecutionProvider', 'CPUExecutionProvider'])
 
     img_cv = cv2.cvtColor(np.asarray(image), cv2.COLOR_RGB2BGR)
     img_clone = img_cv.copy()
